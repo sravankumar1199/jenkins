@@ -126,7 +126,46 @@ pipeline {
     }
 }
 
-} \
+### In jenkins using command section ##
+
+pipeline {
+    agent { node { label 'AGENT-2' } }  ## it connects only agent-2
+
+    stages {
+        stage('Build') {         ### this is stage 1 ##
+            steps {
+                echo 'Building..'
+                sh 'ls -ltr'
+                sh 'pwd'   #### sh for command execute in jenkins ##
+            
+            }
+        }
+        stage('Test') {        ## this is stage 2 ##
+            steps {
+                echo 'Testing..'
+            
+            }
+        }
+        stage('Deploy') {      ##  this is stage 3 ##
+            steps {
+                echo 'Deploying....'
+            
+            }
+        }
+    }
+}
+
+
 #### Google search jenkins pipeline ## two types pipelines ##
 1. scripted pipeline and 2.declarative pipeline must latest version is declarative pipeline
 2.pipeline or jenkins file both are same
+
+#### pipeline concept is we are building code manual in jenkins ####
+#### But webhook concept is automaticly whenever developers changes code in vso and push to github automaticly builded in jenkins #####  that process we will implement is devops guy work ##
+1.how to create webhook
+[a] open githun and open setting select webhook and select add webhook give password.
+[b] payload url is paste jenkins running url http://3.80.124.199:8080/github-webhook/
+[c] content type is application/json 
+[d] select let me select individual events and select pusher and if require then select other options
+[e] again press in url and select recent delivery and press top right 
+[a] again open jenkins click configar and select github hook trigger for GISTcm polling
