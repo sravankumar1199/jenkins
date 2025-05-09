@@ -69,12 +69,16 @@ echo "THIS IS FORM JENKINS MASTER TO AGENT" >/tmp/sunny.txt
 echo "THIS IS AGENT-2"
 echo "THIS IS FORM JENKINS MASTER TO AGENT" >/tmp/sunny.txt
 
-########### jenkins pipeline topic ############
+
+########################################################################################################
+                      ########### jenkins pipeline topic ############
+#######################################################################################################                      
 # pipeline is execute stages vis like first test,second build,third deploy these types we do in pipeline
 1. keep in git
 2.version control
 3.restore
 4.retrive the changes
+5.For example one application to do testing,building,deploying so using jenkins pipeline to write a code in vsc and code pushes to github and that url paste into the jenkins and runs the job is called jenkins pipeline.
 
 ### THIS IS BASIC JENKINS PIPELINE SCRIPT PRINTING HELLO WORLD ####
 pipeline {
@@ -166,6 +170,36 @@ pipeline {
 [a] open githun and open setting select webhook and select add webhook give password.
 [b] payload url is paste jenkins running url http://3.80.124.199:8080/github-webhook/
 [c] content type is application/json 
-[d] select let me select individual events and select pusher and if require then select other options
-[e] again press in url and select recent delivery and press top right 
-[a] again open jenkins click configar and select github hook trigger for GISTcm polling
+[d] select let me select individual events and select pushes option and if require then select other options
+[e] again press on url and select recent delivery and press top right 
+[a] again open jenkins click configar and select github hook trigger for GISTcm polling option
+
+################ Difference between declarative pipeline and seripted pipeline #########################
+  ##[a] Declarative pipeline
+
+pipeline {                                ## in declarative pipeline ##
+    agent any {                             1. connects at a time all agents means all nodes
+        stage {                             2. only declarative pipeline has 2 stages  
+            stage('build') {                3. first stage creats second stage 
+                steps {                     4. second stage creates ('build') or test or any
+                    echo 'hello world'      5. after second stage thers is steps like echo 'hello'
+                                            6. after ending stages sections like post and always,success
+                }
+            }
+        }
+    }
+}       
+
+##[b] scriped pipeline
+
+node {  
+    stage('Build') {        1. it connects only one agent.
+        //                  2. its not have double stages.
+    }                       3. its direct configar only first stage.
+    stage('Test') { 
+        // 
+    }
+    stage('Deploy') { 
+        // 
+    }
+}
