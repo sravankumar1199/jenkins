@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 echo 'this is webhook concept in jenkins'
+                echo 'HELLO THIS IS WEBHOOK'
             
             }
         }
