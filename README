@@ -203,3 +203,7 @@ node {
         // 
     }
 }
+
+ ###################### How to create users in jenkins #####################################
+ 1. select manage jenkins, again select users and create user and also give read,write,login premissions
+ 2. How to create folders in jenkins first click dashboard and click +, give name : jobs, select list view and create and choose what jobs or fils you keep inside the folder in jenkins.
