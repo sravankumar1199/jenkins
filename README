@@ -78,7 +78,7 @@ echo "THIS IS FORM JENKINS MASTER TO AGENT" >/tmp/sunny.txt
 
 ### THIS IS BASIC JENKINS PIPELINE SCRIPT PRINTING HELLO WORLD ####
 pipeline {
-    agent any
+    agent any ## any agent means it connects all agents 
 
     stages {
         stage('Hello') {
@@ -88,6 +88,45 @@ pipeline {
         }
     }
 }
+
+pipeline {
+    agent { node { label 'AGENT-2' } }  ## it connects only agent-2
+
+    stages {
+        stage('Build') {         ### this is stage 1 ##
+            steps {
+                echo 'Building..'
+            
+            }
+        }
+        stage('Test') {        ## this is stage 2 ##
+            steps {
+                echo 'Testing..'
+            
+            }
+        }
+        stage('Deploy') {      ##  this is stage 3 ##
+            steps {
+                echo 'Deploying....'
+            
+            }
+        }   ## inside the stage it has post section,always section,success section ##  
+    }
+    post { 
+        always {       ## this is always section ##
+            echo 'I will always run when the job is success or not'
+        }
+        success{       ## this is success section when job success that time its run ##
+            echo 'i will run always when the job is success'
+        }
+        failure {   ## this is failure section when job fails that time it runs ##
+            echo 'i will run when the job fails'
+        }
+    
+    }
+}
+
+} \
 #### Google search jenkins pipeline ## two types pipelines ##
 1. scripted pipeline and 2.declarative pipeline must latest version is declarative pipeline
 2.pipeline or jenkins file both are same
