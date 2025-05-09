@@ -1,0 +1,67 @@
+######## jenkins #########
+jenkins is a CICD methodology
+# CI means continuous integration # CD means continuous Delivery or Deploy
+1.continuous integration is a devops software development
+2. where developers regularty merge their code changes into a central repository, like github, bigbuket 
+3.the key goals of continuous integration are to find the bugs,improve software quality,and reduce the time to validate and release new software upda
+4. artifact means out changes code is ready to merge
+
+## jenkins
+1. jenkisn is open source project,written in java that runs windows,linux,mocos
+2.consist of plugins..In jenkins has lot of plugins that uses for test or build
+3.It was developed by sun microsystem
+4.whenever developers write code,we integrate all the code and at any point of time we build,test and delivery or deploy to client.this is called CI/CD.
+
+## jenkins is standead on application means ui,backend,db ##
+in jenkins db means filesystem
+
+## integration of git with jenkins Topic ## 
+1. means what project is in git repo that will execute in jenkins
+
+
+## In jenkins how to configar git code to jenkins ##
+1.first create a job select freestyle and create again select source code management paste git url link in repo
+2.next branches to build  why */ it means all files selected in git repo and select # currrent which brancher are in github that select in jenkins brarch
+
+## In jenkins what we configar inside the jenkins ##
+1. That configar stores in this path /var/lib/jenkins/workspace/job-3
+
+## Freestyle disadvantages ## UI, can not restore easily, can not trace who did changes 
+for example: we created job-3 in freestyle and we configar someting inside the job-3, so not secure that job easliy someone can enter into our created job-3 so they do something inside the job-3, that is not secure 
+That's why pipeline feather came #
+
+##### MASTER-AGENT ARCHITECTURE #####
+For example: if you have 2acres formland you do your work youself or you have 200acres you will distribute work load to employers
+so same: jenkinsmaster also provides work load to agents 
+                            agent-1
+         jenkinsmaster      agent-2
+                            agent-3
+
+###### How to connect jenkins to Agent-1 #####
+1. First launch instance in aws name: Agent-1
+2. open Agent-1 in superputty with ippubile & install java use # yum install fontconfig java-17-openjdk 
+3.open jenkins ,manage jenkins,nodejs,new repo,node name AGENT-1,select permanent agent,
+4.number of executors = 3 means how many jobs run at a time use give like 1 to many more jobs
+5.remote root directory = /home/centos 
+6.lables = AGENT-01
+7.Launch method = 2option , first option means agent can ask work to jenkins second option jenkins can ask work to agent 
+8.host means agent private ip paste 
+9.add cendentials username: centos password: DevOps321 add and again select
+10.host key verification strategy = non verification strategy
+11. save and launch agent 
+12. create job in jenkins select freestyle,select restrict and give name: AGENT-2 and press excute shell : echo "THIS IS AGENT-2"
+echo "THIS IS FORM JENKINS MASTER TO AGENT" >/tmp/sunny.txt
+13. apply and save and build
+14.again open agent-2 sever in superputty open tmp folder and cat sunny.txt appears in what we written in execute shell in jenkins
+
+## How to download and install jenkins in jenkins server ##
+1.launch instance in aws name: jenkins
+2.search in google : jenkins
+[a] sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+[b] sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+[c] yum install fontconfig java-17-openjdk
+[d] yum install jenkins
+[e] start and enable jenkins
+
+echo "THIS IS AGENT-2"
+echo "THIS IS FORM JENKINS MASTER TO AGENT" >/tmp/sunny.txt
