@@ -59,9 +59,35 @@ echo "THIS IS FORM JENKINS MASTER TO AGENT" >/tmp/sunny.txt
 2.search in google : jenkins
 [a] sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 [b] sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-[c] yum install fontconfig java-17-openjdk
-[d] yum install jenkins
+[c] sudo yum install fontconfig java-17-openjdk -y
+[d] sudo yum install jenkins -y    #### jenkins run on 8080 port number ####
 [e] start and enable jenkins
+[f] sudo /var/lib/jenkins/secrets/initialAdminPassword 
+[g] this is jenkins password like this paste in jenkins 9c221ba91c7a43908e24518f70bfb42a
+
 
 echo "THIS IS AGENT-2"
 echo "THIS IS FORM JENKINS MASTER TO AGENT" >/tmp/sunny.txt
+
+########### jenkins pipeline topic ############
+# pipeline is execute stages vis like first test,second build,third deploy these types we do in pipeline
+1. keep in git
+2.version control
+3.restore
+4.retrive the changes
+
+### THIS IS BASIC JENKINS PIPELINE SCRIPT PRINTING HELLO WORLD ####
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+#### Google search jenkins pipeline ## two types pipelines ##
+1. scripted pipeline and 2.declarative pipeline must latest version is declarative pipeline
+2.pipeline or jenkins file both are same
